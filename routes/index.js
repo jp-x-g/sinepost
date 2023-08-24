@@ -6,8 +6,7 @@ router.get('/', async function(req, res, next) {
   const path = req.params.path;
 
   try {
-    const processedText = await wikiController.fetchAndProcessData("");
-
+    var processedText = await wikiController.fetchAndProcessData("");
     // Send the processed text as a response
     res.send(processedText);
   } catch (error) {
@@ -16,11 +15,15 @@ router.get('/', async function(req, res, next) {
 });
 
 router.get('/:path(*)', async function(req, res, next) {
-  const path = req.params.path;
-
+  var path = req.params.path;
   try {
-    const processedText = await wikiController.fetchAndProcessData("/" + path);
-
+    //   if (path.substring(path.length - 4) == ".css") {
+    //      console.log("CSS")
+    //      var processedText = await wikiController.fetchAndProcessCSS("/" + path);
+    //    } else {
+    //      var processedText = await wikiController.fetchAndProcessData("/" + path);
+    //    }
+    var processedText = await wikiController.fetchAndProcessData("/" + path);
     // Send the processed text as a response
     res.send(processedText);
   } catch (error) {
