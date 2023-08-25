@@ -107,7 +107,7 @@ async function fetchAndProcessData(path) {
     fontsString = fonts.join(`&family=`).replaceAll(` `, `+`);
     fontsString = `https://fonts.googleapis.com/css2?family=${fontsString}&display=swap`
 
-
+    favicon = `https://upload.wikimedia.org/wikipedia/commons/0/0d/Signpost-favicon.png`
 
     /* Now the most miserable part: getting metadata to compose a preview card. */
     const $ = cheerio.load(text);
@@ -142,22 +142,23 @@ async function fetchAndProcessData(path) {
     preface += `\n<link rel="preconnect" href="https://fonts.googleapis.com">`
     preface += `\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`
     preface += `\n<link href="${fontsString}" rel="stylesheet">`
+    preface += `\n<link rel="shortcut icon" href="${favicon}" type="image/x-icon" />`
     preface += `\n`
     preface += `\n<meta name="description"            content="${descrp}" />`
-    preface += `\n<link rel="canonical" href="https://signpost.news/${path}">`
+    preface += `\n<link rel="canonical"                  href="https://signpost.news${path}">`
     preface += `\n<meta property="og:description"     content="${descrp}" />`
     preface += `\n<meta property="fb:app_id"          content="" />`
     preface += `\n<meta property="og:image"           content="" />`
     preface += `\n<meta property="og:image:alt"       content="" />`
     preface += `\n<meta property="og:image:height"    content="" />`
     preface += `\n<meta property="og:image:width"     content="" />`
-    preface += `\n<meta property="og:site_name"       content="" />`
+    preface += `\n<meta property="og:site_name"       content="The Signpost" />`
     preface += `\n<meta property="og:title"           content="${pagetitle}" />`
     preface += `\n<meta property="og:type"            content="article" />`
-    preface += `\n<meta property="og:url"             content="https://signpost.news/${path}" />`
+    preface += `\n<meta property="og:url"             content="https://signpost.news${path}" />`
     preface += `\n`
     preface += `\n<meta name="twitter:card"           content="summary" />`
-    preface += `\n<meta name="twitter:url"            content="https://signpost.news/${path}" />`
+    preface += `\n<meta name="twitter:url"            content="https://signpost.news${path}" />`
     preface += `\n<meta name="twitter:title"          content="${pagetitle}" />`
     preface += `\n<meta name="twitter:description"    content="${descrp}" />`
     preface += `\n<meta name="twitter:image"          content="" />`
