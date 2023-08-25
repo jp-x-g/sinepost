@@ -143,26 +143,26 @@ async function fetchAndProcessData(path) {
     preface += `\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`
     preface += `\n<link href="${fontsString}" rel="stylesheet">`
     preface += `\n`
-    preface += `\n<meta name="description" content="${descrp}">`
+    preface += `\n<meta name="description"            content="${descrp}" />`
     preface += `\n<link rel="canonical" href="https://signpost.news/${path}">`
-    preface += `\n<meta property="og:description" content="${descrp}">`
-    preface += `\n<meta property="fb:app_id" content="">`
-    preface += `\n<meta property="og:image" content="">`
-    preface += `\n<meta property="og:image:alt" content="">`
-    preface += `\n<meta property="og:image:height" content="">`
-    preface += `\n<meta property="og:image:width" content="">`
-    preface += `\n<meta property="og:site_name" content="">`
-    preface += `\n<meta property="og:title" content="${pagetitle}">`
-    preface += `\n<meta property="og:type" content="">`
-    preface += `\n<meta property="og:url" content="https://signpost.news/${path}">`
+    preface += `\n<meta property="og:description"     content="${descrp}" />`
+    preface += `\n<meta property="fb:app_id"          content="" />`
+    preface += `\n<meta property="og:image"           content="" />`
+    preface += `\n<meta property="og:image:alt"       content="" />`
+    preface += `\n<meta property="og:image:height"    content="" />`
+    preface += `\n<meta property="og:image:width"     content="" />`
+    preface += `\n<meta property="og:site_name"       content="" />`
+    preface += `\n<meta property="og:title"           content="${pagetitle}" />`
+    preface += `\n<meta property="og:type"            content="article" />`
+    preface += `\n<meta property="og:url"             content="https://signpost.news/${path}" />`
     preface += `\n`
-    preface += `\n<meta name="twitter:card" content="summary">`
-    preface += `\n<meta name="twitter:url" content="https://signpost.news/${path}">`
-    preface += `\n<meta name="twitter:title" content="${pagetitle}">`
-    preface += `\n<meta name="twitter:description" content="${descrp}">`
-    preface += `\n<meta name="twitter:image" content="">`
-    preface += `\n<meta name="twitter:site" content="The Signpost">`
-    preface += `\n<meta name="twitter:image:alt" content="">`
+    preface += `\n<meta name="twitter:card"           content="summary" />`
+    preface += `\n<meta name="twitter:url"            content="https://signpost.news/${path}" />`
+    preface += `\n<meta name="twitter:title"          content="${pagetitle}" />`
+    preface += `\n<meta name="twitter:description"    content="${descrp}" />`
+    preface += `\n<meta name="twitter:image"          content="" />`
+    preface += `\n<meta name="twitter:site"           content="The Signpost" />`
+    preface += `\n<meta name="twitter:image:alt"      content="" />`
 
 
     /* Close the header. */
