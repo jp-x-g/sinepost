@@ -1,4 +1,5 @@
 const axios = require('axios');
+const cheerio = require('cheerio');
 
 async function fetchAndProcessData(path) {
   try {
@@ -15,10 +16,10 @@ async function fetchAndProcessData(path) {
       if (redirs.length != 0) {
           var pagename = String(redirs[0]["to"]);
         } else {
-          var pagename = "Wikipedia:Wikipedia Signpost" + path;
+          var pagename = `Wikipedia:Wikipedia Signpost` + path;
         }
     } else {
-      var pagename = "Wikipedia:Wikipedia Signpost" + path;
+      var pagename = `Wikipedia:Wikipedia Signpost` + path;
     }
 
     var text = response.data.parse.text['*'];
@@ -40,31 +41,136 @@ async function fetchAndProcessData(path) {
     // Replace all formerly-local Wikipedia links with fully specified URLs
     // String processing on HTML = another shot
 
-    // csslink = `<link rel="stylesheet" href="/Templates/external.css">`
-    //text.replace("<head>", "<head>\n" + csslink)
-    //// Great, extremely well-thought-out way to add something to the head element. Third shot
-    //// Also: stylesheet references a route from this same Express app.
-    //// Unnecessarily recursive nonsense. Finish your glass!!
+
 
     csslink = `https://en.wikipedia.org/w/index.php?title=Wikipedia:Wikipedia_Signpost/Templates/external.css&action=raw&ctype=text/css`
 
-
+    /* Compose URL for font requests. */
     fonts = [
-      "Anybody:wght@300",
-      "Yeseva One",
-      "Goblin One"
-      ]
+      `Anybody:wght@300`,
+      `Yeseva One`,
+      `Goblin One`,
+      `Stint Ultra Expanded`,
+      `Viaoda Libre`
+    ]
+
+
+
+    /* fonts = [
+      `Anybody:wght@300`,
+      `Yeseva One`,
+      `Goblin One`,
+      `Stint Ultra Expanded`,
+      `Aboreto`,
+      `Abril Fatface`,
+      `Almendra Display`,
+      `Arbutus`,
+      `BhuTuka Expanded One`,
+      `Big Shoulders Text:wght@100;400;900`,
+      `Bokor`,
+      `Calistoga`,
+      `Caprasimo`,
+      `Castoro Titling`,
+      `Chango`,
+      `Chicle`,
+      `Chonburi`,
+      `Climate Crisis`,
+      `Dela Gothic One`,
+      `Diplomata`,
+      `Diplomata SC`,
+      `Erica One`,
+      `Fascinate Inline`,
+      `Federant`,
+      `Geostar Fill`,
+      `Germania One`,
+      `Gideon Roman`,
+      `Graduate`,
+      `Gravitas One`,
+      `Grenze Gotisch:wght@100;400;700;900`,
+      `Katibeh`,
+      `Kelly Slab`,
+      `Kings`,
+      `Kumar One`,
+      `Kumar One Outline`,
+      `Limelight`,
+      `New Rocker`,
+      `Odibee Sans`,
+      `Oi`,
+      `Pirata One`,
+      `Poller One`,
+      `Red Rose:wght@300;400;700`,
+      `Smokum`,
+      `UnifrakturCook:wght@700`,
+      `UnifrakturMaguntia`,
+      `Viaoda Libre`
+    ] */
+    fontsString = fonts.join(`&family=`).replaceAll(` `, `+`);
+    fontsString = `https://fonts.googleapis.com/css2?family=${fontsString}&display=swap`
+
+
+
+    /* Now the most miserable part: getting metadata to compose a preview card. */
+    const $ = cheerio.load(text);
+
+    var pagetitle = $('h2').first().text();
+      console.log(pagetitle);
+
+    var descrp = $('div[itemprop="description"]').text();
+      console.log(descrp);
+      // This will be something like:
+      // Barbenheimer confirmed: Some improvement on last week.
+      descrp = descrp.replaceAll(pagetitle, "")
+      // Remove page title, so that we get the blurb. It will now be something like:
+      // : Some improvement on last week.
+      descrp = descrp.startsWith(":") ? descrp.substring(1) : descrp;
+      descrp = descrp.startsWith(" ") ? descrp.substring(1) : descrp;
+      console.log(descrp);
+      
+
+
+    /* Compose header. */
 
     preface =  `<!DOCTYPE html>\n`
-    preface += `<html>\n`
-    preface += `<head>\n`
-    preface += `  <title>${path}</title>\n`
-    preface += `<link rel="stylesheet" href="${csslink}">\n`
-    preface += `<link rel="preconnect" href="https://fonts.googleapis.com">`
-    preface += `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`
-    preface += `<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@300&family=Goblin+One&family=Yeseva+One&display=swap" rel="stylesheet">`
+    preface += `\n<html>`
+    preface += `\n<head>`
+    if( pagetitle != "") {
+      preface += `\n  <title>${pagetitle} &ndash; The Signpost</title>`
+    } else {
+      preface += `\n  <title>The Signpost</title>`
+    }
+    preface += `\n<link rel="stylesheet" href="${csslink}">`
+    preface += `\n<link rel="preconnect" href="https://fonts.googleapis.com">`
+    preface += `\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`
+    preface += `\n<link href="${fontsString}" rel="stylesheet">`
+    preface += `\n`
+    preface += `\n<meta name="description" content="${descrp}">`
+    preface += `\n<link rel="canonical" href="https://signpost.news/${path}">`
+    preface += `\n<meta property="og:description" content="${descrp}">`
+    preface += `\n<meta property="fb:app_id" content="">`
+    preface += `\n<meta property="og:image" content="">`
+    preface += `\n<meta property="og:image:alt" content="">`
+    preface += `\n<meta property="og:image:height" content="">`
+    preface += `\n<meta property="og:image:width" content="">`
+    preface += `\n<meta property="og:site_name" content="">`
+    preface += `\n<meta property="og:title" content="${pagetitle}">`
+    preface += `\n<meta property="og:type" content="">`
+    preface += `\n<meta property="og:url" content="https://signpost.news/${path}">`
+    preface += `\n`
+    preface += `\n<meta name="twitter:card" content="summary">`
+    preface += `\n<meta name="twitter:url" content="https://signpost.news/${path}">`
+    preface += `\n<meta name="twitter:title" content="${pagetitle}">`
+    preface += `\n<meta name="twitter:description" content="${descrp}">`
+    preface += `\n<meta name="twitter:image" content="">`
+    preface += `\n<meta name="twitter:site" content="The Signpost">`
+    preface += `\n<meta name="twitter:image:alt" content="">`
+
+
+    /* Close the header. */
+
     preface += `</head>\n`
     preface += `<body>\n`
+
+    /* Add this to the text. */
 
     text = preface + text;
 
