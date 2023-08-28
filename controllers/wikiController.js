@@ -125,7 +125,17 @@ async function fetchAndProcessData(path) {
       descrp = descrp.startsWith(":") ? descrp.substring(1) : descrp;
       descrp = descrp.startsWith(" ") ? descrp.substring(1) : descrp;
       console.log(descrp);
-      
+      // If the description has HTML in it for some reason, take that out.
+      if (descrp.includes("<")) {
+        let index = descrp.indexOf("<");
+        descrp = descrp.substring(0, index);
+      }
+      if (path.includes("/Single/")){
+        descrp = path.substring(path.indexOf("/Single/") + "/Single/".length)
+        pagetitle = `Single-page edition for ${descrp}`
+        descrp = `News for the editoriat. Stuff that matters.`
+
+      }
 
 
     /* Compose header. */
@@ -174,14 +184,18 @@ async function fetchAndProcessData(path) {
     /* Add this to the text. */
 
     text = preface + text;
-
+https://upload.wikimedia.org/wikipedia/commons/f/fe/Poweredby_mediawiki_88x31_transparent.png
     debugString = `\n<br />`
     debugString += `\n<br />`
     debugString += `\n<br />`
-    debugString += `\n<hr />`
     debugString += `\n<div style="display: flex; justify-content: center">`
-    debugString += `<!--<img src="https://tools-static.wmflabs.org/toolforge/banners/Powered-by-Toolforge-button.png"> &nbsp; &nbsp;<img src="https://www.debian.org/logos/button-1.gif">-->`
-    debugString += `\n<a href="https://en.wikipedia.org/w/api.php?action=parse&format=json&redirects=true&page=Wikipedia:Wikipedia_Signpost${path}">ꙮ</a>`
+    debugString += `\n<!--<img src="https://tools-static.wmflabs.org/toolforge/banners/Powered-by-Toolforge-button.png"> &nbsp; &nbsp;<img src="https://www.debian.org/logos/button-1.gif">-->`
+    debugString += `\n<img src="https://licensebuttons.net/l/by-sa/3.0/88x31.png"/> &nbsp; &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Ubuntu_website_icon_88x31_%28transparent%2C_powered_by%29.png"/> &nbsp; &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Poweredby_mediawiki_88x31_transparent.png"/>`
+    debugString += `\n</div>`
+    debugString += `\n<br />`
+    debugString += `\n<div style="display: flex; justify-content: center">`
+    debugString += `\n<!--<a href="https://en.wikipedia.org/w/api.php?action=parse&format=json&redirects=true&page=Wikipedia:Wikipedia_Signpost${path}">ꙮ</a>-->`
+    debugString += `\n<span class="signpost-author"><a href="https://en.wikipedia.org/wiki/Wikipedia:Wikipedia_Signpost">The Signpost</a> · written by many · served by <a href="https://github.com/jp-x-g/sinepost">Sinepost V0.9</a> · 🄯 <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a></span>`
     debugString += `\n</div>`
     text += debugString;
     text += "\n</body>"
