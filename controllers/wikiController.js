@@ -175,25 +175,14 @@ async function fetchAndProcessData(path) {
 
     text = preface + text;
 
-    debugString = `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<br />`
-    debugString += `<a href="https://en.wikipedia.org/w/api.php?action=parse&format=json&redirects=true&page=Wikipedia:Wikipedia_Signpost${path}">` + String(pagename) + `</a><br />`
-    
+    debugString = `\n<br />`
+    debugString += `\n<br />`
+    debugString += `\n<br />`
+    debugString += `\n<hr />`
+    debugString += `\n<div style="display: flex; justify-content: center">`
+    debugString += `<!--<img src="https://tools-static.wmflabs.org/toolforge/banners/Powered-by-Toolforge-button.png"> &nbsp; &nbsp;<img src="https://www.debian.org/logos/button-1.gif">-->`
+    debugString += `\n<a href="https://en.wikipedia.org/w/api.php?action=parse&format=json&redirects=true&page=Wikipedia:Wikipedia_Signpost${path}">ꙮ</a>`
+    debugString += `\n</div>`
     text += debugString;
     text += "\n</body>"
     return text;

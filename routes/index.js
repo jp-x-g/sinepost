@@ -28,15 +28,27 @@ router.get('/:path(*)', async function(req, res, next) {
     res.send(processedText);
   } catch (error) {
     // Render the error.jade template directly
-    res.render('error', {
-      title: 'Error', // Define the title variable
-      message: 'An error occurred', // Customize the error message
-      error: {
-        message: error.message,
-        status: 500,
-        stack: error.stack
-      }
-    });
+    try {
+      res.render('error', {
+        title: 'Error', // Define the title variable
+        message: 'An error occurred', // Customize the error message
+        error: {
+          message: error.message,
+          status: 500,
+          stack: error.stack
+        }
+      });
+    } catch (ReferenceError) {
+      res.render('error', {
+        title: 'Error', // Define the title variable
+        message: 'An error occurred', // Customize the error message
+        error: {
+          message: "ReferenceError",
+          status: 500,
+          stack: error.stack
+        }
+      });
+    }
   }
 });
 
