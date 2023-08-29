@@ -191,7 +191,6 @@ async function fetchAndProcessData(path) {
       "/Tag/recentresearch",
       "/Tag/humour",
       "/Archives",
-      "/Search"
       ]
     subheaderTexts = [
       "news",
@@ -200,8 +199,7 @@ async function fetchAndProcessData(path) {
       "media",
       "research",
       "laughs",
-      "(archives)",
-      "(search)"
+      "(archives / search)"
       ]
 
     subsubheader = ``
@@ -217,7 +215,6 @@ async function fetchAndProcessData(path) {
     subsubheader += `        <td style="width: 12%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[4]}">${subheaderTexts[4]}</a></td>`
     subsubheader += `        <td style="width: 12%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[5]}">${subheaderTexts[5]}</a></td>`
     subsubheader += `        <td style="width: 12%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[6]}">${subheaderTexts[6]}</a></td>`
-    subsubheader += `        <td style="width: 12%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[7]}">${subheaderTexts[7]}</a></td>`
     subsubheader += `      </tr>`
     subsubheader += `    </tbody>`
     subsubheader += `  </table>`
