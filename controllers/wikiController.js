@@ -199,7 +199,7 @@ async function fetchAndProcessData(path) {
       "media",
       "research",
       "laughs",
-      "(archives / search)"
+      "&#x1F50D;&#xFE0E; archives"
       ]
 
     subsubheader = ``
