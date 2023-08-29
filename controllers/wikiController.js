@@ -189,7 +189,9 @@ async function fetchAndProcessData(path) {
       "/Tag/opinion",
       "/Tag/inthemedia",
       "/Tag/recentresearch",
-      "/Tag/humour"
+      "/Tag/humour",
+      "/Archives",
+      "/Search"
       ]
     subheaderTexts = [
       "news",
@@ -197,7 +199,9 @@ async function fetchAndProcessData(path) {
       "opinion",
       "media",
       "research",
-      "laughs"
+      "laughs",
+      "(archives)",
+      "(search)"
       ]
 
     subsubheader = ``
@@ -206,12 +210,14 @@ async function fetchAndProcessData(path) {
     subsubheader += `  <table style="margin:auto;">`
     subsubheader += `    <tbody>`
     subsubheader += `      <tr>`
-    subsubheader += `        <td style="width: 15%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[0]}">${subheaderTexts[0]}</a></td>`
-    subsubheader += `        <td style="width: 15%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[1]}">${subheaderTexts[1]}</a></td>`
-    subsubheader += `        <td style="width: 15%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[2]}">${subheaderTexts[2]}</a></td>`
-    subsubheader += `        <td style="width: 15%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[3]}">${subheaderTexts[3]}</a></td>`
-    subsubheader += `        <td style="width: 15%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[4]}">${subheaderTexts[4]}</a></td>`
-    subsubheader += `        <td style="width: 15%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[5]}">${subheaderTexts[5]}</a></td>`
+    subsubheader += `        <td style="width: 12%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[0]}">${subheaderTexts[0]}</a></td>`
+    subsubheader += `        <td style="width: 12%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[1]}">${subheaderTexts[1]}</a></td>`
+    subsubheader += `        <td style="width: 12%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[2]}">${subheaderTexts[2]}</a></td>`
+    subsubheader += `        <td style="width: 12%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[3]}">${subheaderTexts[3]}</a></td>`
+    subsubheader += `        <td style="width: 12%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[4]}">${subheaderTexts[4]}</a></td>`
+    subsubheader += `        <td style="width: 12%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[5]}">${subheaderTexts[5]}</a></td>`
+    subsubheader += `        <td style="width: 12%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[6]}">${subheaderTexts[6]}</a></td>`
+    subsubheader += `        <td style="width: 12%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[7]}">${subheaderTexts[7]}</a></td>`
     subsubheader += `      </tr>`
     subsubheader += `    </tbody>`
     subsubheader += `  </table>`
@@ -225,7 +231,12 @@ async function fetchAndProcessData(path) {
 
     text = preface + text;
 
-    text = text.replace(`<div class="signpost-header-subsubheadings">`, subsubheader)
+    text = text.replace(`<div class="signpost-header-subsubheadings">`, subsubheader);
+    // put little department links in the subheader for external view
+    // LOL
+
+    text = text.replace(`action="/wiki/Special:Search`, `action="https://en.wikipedia.org/wiki/Special:Search`);
+    // un-scuff the search box
     // LOL
 
     subfooter = `\n<br />`
