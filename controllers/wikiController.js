@@ -181,24 +181,69 @@ async function fetchAndProcessData(path) {
     preface += `</head>\n`
     preface += `<body>\n`
 
+    /* Compose a subsubheader of departments. */
+
+    subheaderHrefs = [
+      "/Tag/newsandnotes",
+      "/Tag/specialreport",
+      "/Tag/opinion",
+      "/Tag/inthemedia",
+      "/Tag/recentresearch",
+      "/Tag/humour"
+      ]
+    subheaderTexts = [
+      "news",
+      "specials",
+      "opinion",
+      "media",
+      "research",
+      "lol"
+      ]
+
+    subsubheader = ``
+    subsubheader += `<div class="signpost-header-subsubheadings" style="border-top: 3px double #999;">`
+    subsubheader += `  <br />`
+    subsubheader += `  <table style="margin:auto;">`
+    subsubheader += `    <tbody>`
+    subsubheader += `      <tr>`
+    subsubheader += `        <td style="width: 15%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[0]}">${subheaderTexts[0]}</a></td>`
+    subsubheader += `        <td style="width: 15%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[1]}">${subheaderTexts[1]}</a></td>`
+    subsubheader += `        <td style="width: 15%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[2]}">${subheaderTexts[2]}</a></td>`
+    subsubheader += `        <td style="width: 15%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[3]}">${subheaderTexts[3]}</a></td>`
+    subsubheader += `        <td style="width: 15%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[4]}">${subheaderTexts[4]}</a></td>`
+    subsubheader += `        <td style="width: 15%; font-size: 100%; text-align: center;" class="signpost-snippet-department"><a href="${subheaderHrefs[5]}">${subheaderTexts[5]}</a></td>`
+    subsubheader += `      </tr>`
+    subsubheader += `    </tbody>`
+    subsubheader += `  </table>`
+    subsubheader += `</div>`
+    
+
+
     /* Add this to the text. */
 
+
+
     text = preface + text;
-https://upload.wikimedia.org/wikipedia/commons/f/fe/Poweredby_mediawiki_88x31_transparent.png
-    debugString = `\n<br />`
-    debugString += `\n<br />`
-    debugString += `\n<br />`
-    debugString += `\n<div style="display: flex; justify-content: center">`
-    debugString += `\n<!--<img src="https://tools-static.wmflabs.org/toolforge/banners/Powered-by-Toolforge-button.png"> &nbsp; &nbsp;<img src="https://www.debian.org/logos/button-1.gif">-->`
-    debugString += `\n<img src="https://licensebuttons.net/l/by-sa/3.0/88x31.png"/> &nbsp; &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Ubuntu_website_icon_88x31_%28transparent%2C_powered_by%29.png"/> &nbsp; &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Poweredby_mediawiki_88x31_transparent.png"/>`
-    debugString += `\n</div>`
-    debugString += `\n<br />`
-    debugString += `\n<div style="display: flex; justify-content: center">`
-    debugString += `\n<!--<a href="https://en.wikipedia.org/w/api.php?action=parse&format=json&redirects=true&page=Wikipedia:Wikipedia_Signpost${path}">ꙮ</a>-->`
-    debugString += `\n<span class="signpost-author"><a href="https://en.wikipedia.org/wiki/Wikipedia:Wikipedia_Signpost">The Signpost</a> · written by many · served by <a href="https://github.com/jp-x-g/sinepost">Sinepost V0.9</a> · 🄯 <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a></span>`
-    debugString += `\n</div>`
-    text += debugString;
+
+    text = text.replace(`<div class="signpost-header-subsubheadings">`, subsubheader)
+    // LOL
+
+    subfooter = `\n<br />`
+    subfooter += `\n<br />`
+    subfooter += `\n<br />`
+    subfooter += `\n<div style="display: flex; justify-content: center">`
+    subfooter += `\n<!--<img src="https://tools-static.wmflabs.org/toolforge/banners/Powered-by-Toolforge-button.png"> &nbsp; &nbsp;<img src="https://www.debian.org/logos/button-1.gif">-->`
+    subfooter += `\n<img src="https://licensebuttons.net/l/by-sa/3.0/88x31.png"/> &nbsp; &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Ubuntu_website_icon_88x31_%28transparent%2C_powered_by%29.png"/> &nbsp; &nbsp;<img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Poweredby_mediawiki_88x31_transparent.png"/>`
+    subfooter += `\n</div>`
+    subfooter += `\n<br />`
+    subfooter += `\n<div style="display: flex; justify-content: center">`
+    subfooter += `\n<!--<a href="https://en.wikipedia.org/w/api.php?action=parse&format=json&redirects=true&page=Wikipedia:Wikipedia_Signpost${path}">ꙮ</a>-->`
+    subfooter += `\n<span class="signpost-author"><a href="https://en.wikipedia.org/wiki/Wikipedia:Wikipedia_Signpost">The Signpost</a> · written by many · served by <a href="https://github.com/jp-x-g/sinepost">Sinepost V0.9</a> · 🄯 <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a></span>`
+    subfooter += `\n</div>`
+    text += subfooter;
     text += "\n</body>"
+
+    /* Send the text back. */
     return text;
   } catch (error) {
     throw error;
