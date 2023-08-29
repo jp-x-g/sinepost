@@ -197,7 +197,7 @@ async function fetchAndProcessData(path) {
       "opinion",
       "media",
       "research",
-      "lol"
+      "laughs"
       ]
 
     subsubheader = ``
@@ -238,7 +238,7 @@ async function fetchAndProcessData(path) {
     subfooter += `\n<br />`
     subfooter += `\n<div style="display: flex; justify-content: center">`
     subfooter += `\n<!--<a href="https://en.wikipedia.org/w/api.php?action=parse&format=json&redirects=true&page=Wikipedia:Wikipedia_Signpost${path}">ꙮ</a>-->`
-    subfooter += `\n<span class="signpost-author"><a href="https://en.wikipedia.org/wiki/Wikipedia:Wikipedia_Signpost">The Signpost</a> · written by many · served by <a href="https://github.com/jp-x-g/sinepost">Sinepost V0.9</a> · 🄯 <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a></span>`
+    subfooter += `\n<span class="signpost-author"><a href="https://en.wikipedia.org/wiki/Wikipedia:Wikipedia_Signpost">The Signpost</a> · written by <a href="https://en.wikipedia.org/wiki/Wikipedia:Wikipedia_Signpost${path}>many</a> · served by <a href="https://github.com/jp-x-g/sinepost">Sinepost V0.9</a> · 🄯 <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC-BY-SA 4.0</a></span>`
     subfooter += `\n</div>`
     text += subfooter;
     text += "\n</body>"
