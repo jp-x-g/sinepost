@@ -51,7 +51,7 @@ async function fetchAndProcessData(path) {
       `Yeseva One`,
       `Goblin One`,
       `Stint Ultra Expanded`,
-      `Viaoda Libre`
+      `Newsreader`
     ]
 
 
@@ -102,7 +102,9 @@ async function fetchAndProcessData(path) {
       `Smokum`,
       `UnifrakturCook:wght@700`,
       `UnifrakturMaguntia`,
-      `Viaoda Libre`
+      `Viaoda Libre`,
+      `Josefin+Slab:wght@400`,
+
     ] */
     fontsString = fonts.join(`&family=`).replaceAll(` `, `+`);
     fontsString = `https://fonts.googleapis.com/css2?family=${fontsString}&display=swap`
