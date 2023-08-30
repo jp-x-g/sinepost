@@ -51,7 +51,7 @@ async function fetchAndProcessData(path) {
       `Yeseva One`,
       `Goblin One`,
       `Stint Ultra Expanded`,
-      `Newsreader`
+      `Newsreader:wght@300`
     ]
 
 
