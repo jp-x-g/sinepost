@@ -1,6 +1,29 @@
 var express = require('express');
 var router = express.Router();
 var wikiController = require('../controllers/wikiController');
+const fs = require('fs');
+const path = require('path');
+
+// Middleware to log incoming requests
+function logRequest(req, res, next) {
+  const timestamp = new Date().toISOString();
+  const logMessage = `${timestamp} - Path: ${req.path}\n`;
+
+  // Define the path to the log file
+  const logFilePath = path.join(__dirname, '../data/traffic.log');
+
+  // Append the log message to the log file
+  fs.appendFile(logFilePath, logMessage, (err) => {
+    if (err) {
+      console.error('Error writing to traffic log:', err);
+    }
+  });
+
+  next(); // Proceed to the next middleware or route handler
+}
+
+// Attach the logRequest middleware to all routes
+router.use(logRequest);
 
 router.get('/', async function(req, res, next) {
   const path = req.params.path;
