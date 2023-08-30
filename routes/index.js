@@ -7,8 +7,7 @@ const path = require('path');
 // Middleware to log incoming requests
 function logRequest(req, res, next) {
   const timestamp = new Date().toISOString();
-  const logMessage = `${timestamp} - Path: ${req.path}\n`;
-
+  const logMessage = `${timestamp} ///// Path: ${req.path} ///// Referrer: ${req.get('referer') || 'N/A'}\n`;
   // Define the path to the log file
   const logFilePath = path.join(__dirname, '../data/traffic.log');
 
