@@ -155,8 +155,8 @@ async function fetchAndProcessData(path) {
     preface += `\n<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`
     preface += `\n<link href="${fontsString}" rel="stylesheet">`
     preface += `\n<link rel="shortcut icon" href="${favicon}" type="image/x-icon" />`
-    preface += '\n<link rel="alternate" type="application/rss+xml" title="The Signpost" href="https://mediawiki-feeds.toolforge.org/feed.php?url=https%3A%2F%2Fen.wikipedia.org%2Fw%2F&category=Category%3AWikipedia+Signpost+RSS+feed&title=The+Signpost" />'
-    preface += '\n<link rel="alternate" type="application/rss+xml" title="The Signpost (single-page)" href="https://mediawiki-feeds.toolforge.org/feed.php?url=https%3A%2F%2Fen.wikipedia.org%2Fw%2F&category=Category%3AWikipedia+Signpost+single+page+RSS+feed&title=The+Signpost+(single-page)" />'
+    preface += `\n<link rel="alternate" type="application/rss+xml" title="The Signpost" href="https://mediawiki-feeds.toolforge.org/feed.php?url=https%3A%2F%2Fen.wikipedia.org%2Fw%2F&category=Category%3AWikipedia+Signpost+RSS+feed&title=The+Signpost" />`
+    preface += `\n<link rel="alternate" type="application/rss+xml" title="The Signpost (single-page)" href="https://mediawiki-feeds.toolforge.org/feed.php?url=https%3A%2F%2Fen.wikipedia.org%2Fw%2F&category=Category%3AWikipedia+Signpost+single+page+RSS+feed&title=The+Signpost+(single-page)" />`
     preface += `\n`
     preface += `\n<meta name="description"            content="${descrp}" />`
     preface += `\n<link rel="canonical"                  href="https://signpost.news${path}">`
@@ -177,7 +177,7 @@ async function fetchAndProcessData(path) {
     preface += `\n<meta name="twitter:description"    content="${descrp}" />`
     preface += `\n<meta name="twitter:image"          content="" />`
     preface += `\n<meta name="twitter:site"           content="The Signpost" />`
-    preface += `\n<meta name="twitter:image:alt"      content="" />'
+    preface += `\n<meta name="twitter:image:alt"      content="" />`
 
     /* Close the header. */
 
