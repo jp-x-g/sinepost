@@ -9,7 +9,10 @@ async function fetchAndProcessData(path) {
         page: `Wikipedia:Wikipedia_Signpost${path}`,
         format: 'json',
         redirects: 'true'
-      }
+      },
+      headers: {
+        'User-Agent': 'sinepost/0.0 (https://signpost.news/; https://github.com/jp-x-g/sinepost; User:JPxG)'
+      },
     });
     if (response.data.parse.redirects) {
       var redirs = response.data.parse.redirects;
