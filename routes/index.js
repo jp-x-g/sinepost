@@ -52,8 +52,8 @@ router.get('/:path(*)', async function(req, res, next) {
     // Render the error.jade template directly
     try {
       res.render('error', {
-        title: 'Error', // Define the title variable
-        message: 'An error occurred', // Customize the error message
+        title: 'Error',
+        message: 'An error occurred',
         error: {
           message: error.message,
           status: 500,
@@ -62,8 +62,8 @@ router.get('/:path(*)', async function(req, res, next) {
       });
     } catch (ReferenceError) {
       res.render('error', {
-        title: 'Error', // Define the title variable
-        message: 'An error occurred', // Customize the error message
+        title: 'Error',
+        message: 'An error occurred',
         error: {
           message: "ReferenceError",
           status: 500,
